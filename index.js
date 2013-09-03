@@ -47,7 +47,7 @@ Event.prototype.on = function(node, type, callback, capture) {
 
 Event.prototype.delegate = function(node, selector, type, callback, capture) {
   var _this = this;
-  delegate.bind(node, selector, type, function(){
+  delegate.bind(node, selector, type, function(e){
     _this.view[callback].call(_this.view, e, node);
   }, capture);
 };
