@@ -1,11 +1,10 @@
-
 # event-plugin
 
   Event [plugin](https://github.com/bredele/data-binding)
 
 ## Installation
 
-    $ component install bredele/event-plugin
+    $ component install leafs/event-plugin
 
 ## Usage
 
