@@ -1,5 +1,24 @@
-var event = require('event');
-var delegate = require('delegate');
+
+/**
+ * Dependencies
+ */
+
+var ev = require('event'),
+    delegate = require('delegate');
+
+/**
+ * Map touch events.
+ * @type {Object}
+ * @api private
+ */
+
+var mapper = {
+	'click' : 'touchstart',
+	'mousedown' : 'touchstart',
+	'mouseup' : 'touchend',
+	'mousemove' : 'touchmove'
+};
+
 
 /**
  * Expose 'Event plugin'
@@ -14,7 +33,7 @@ module.exports = Event;
  * @api public
  */
 
-function Event(view){
+function Event(view, isTouch){
   this.view = view;
 }
 
@@ -29,7 +48,7 @@ function Event(view){
 
 Event.prototype.on = function(node, type, callback, capture) {
   var _this = this;
-  event.bind(node, type, function(e){
+  ev.bind(node, type, function(e){
     _this.view[callback].call(_this.view, e, node);
   }, (capture === 'true'));
 };
