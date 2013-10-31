@@ -1,3 +1,0 @@
-describe('Listen changes', function(){
-
-});

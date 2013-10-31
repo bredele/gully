@@ -8,7 +8,8 @@
 
 ## Usage
 
-see [widget](https://github.com/bredele/widget)
+see [view](https://github.com/bredele/view)
+
 
 ```js
 var Event = require('event-plugin');

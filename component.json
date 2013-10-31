@@ -8,7 +8,10 @@
     "component/event": "*",
     "component/delegate": "*"
   },
-  "development": {},
+  "development": {
+    "bredele/interpolation" : "*",
+    "component/assert" : "*"
+  },
   "license": "MIT",
   "main": "index.js",
   "scripts": [
