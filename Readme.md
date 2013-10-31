@@ -11,13 +11,13 @@
 
   - clean separation of concerns 
 
-		Because you listen events directly in your HTML (dom or template), 
+    Because you listen events directly in your HTML (dom or template), 
 		you don't need to edit both your HTML and JavaScript when you want 
 		to change something.
 
   - Event mapping for reactive user experience
 
-		By default, this plugin map desktop browser events (such as click, 
+    By default, this plugin map desktop browser events (such as click, 
 		mousedown/up/move) with touch events (such as touchstart/end/move) 
 		if you are on a mobile device.
 
