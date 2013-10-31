@@ -9,15 +9,15 @@
 
 ## Advantages
 
-  - clean separation of concerns 
+  - clean separation of concerns
 
-    Because you listen events directly in your HTML (dom or template), 
+  	Because you listen events directly in your HTML (dom or template), 
 		you don't need to edit both your HTML and JavaScript when you want 
 		to change something.
 
   - Event mapping for reactive user experience
 
-    By default, this plugin map desktop browser events (such as click, 
+  	By default, this plugin map desktop browser events (such as click, 
 		mousedown/up/move) with touch events (such as touchstart/end/move) 
 		if you are on a mobile device.
 
@@ -35,7 +35,7 @@ and an optional boolean to use touch events (true by default).
 ```js
 var EventPlugin = require('event-plugin');
 var plugin = new EventPlugin({}, /** false **/);
-...
+```
 
 
 This plugin can be used with the [view](https://github.com/bredele/view) component.
