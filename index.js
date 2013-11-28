@@ -34,10 +34,11 @@ module.exports = Event;
  * @api public
  */
 
-function Event(view, isTouch){
+function Events(view, isTouch){
   this.view = view;
   this.isTouch = isTouch || (window.ontouchstart !== undefined);
 }
+
 
 
 /**
@@ -49,11 +50,13 @@ function Event(view, isTouch){
  * @api private
  */
 
-Event.prototype.on = function(node, type, callback, capture) {
-  var _this = this;
-  ev.bind(node, this.map(type), function(e){
-    _this.view[callback].call(_this.view, e, node);
-  }, (capture === 'true'));
+Events.prototype.on = function(node, type, callback, capture) {
+  var _this = this,
+      cap = (capture === 'true'),
+      cb = function(e) {
+        _this.view[callback].call(_this.view, e, node);
+      };
+  ev.bind(node, this.map(type), cb, cap);
 };
 
 
@@ -67,7 +70,7 @@ Event.prototype.on = function(node, type, callback, capture) {
  * @api private
  */
 
-Event.prototype.delegate = function(node, selector, type, callback, capture) {
+Events.prototype.delegate = function(node, selector, type, callback, capture) {
   var _this = this;
   delegate.bind(node, selector, this.map(type), function(e){
     _this.view[callback].call(_this.view, e, node);
@@ -81,6 +84,16 @@ Event.prototype.delegate = function(node, selector, type, callback, capture) {
  * @return {String} mapped event
  */
 
-Event.prototype.map = function(type) {
+Events.prototype.map = function(type) {
 	return this.isTouch ? (mapper[type] || type) : type;
+};
+
+
+/**
+ * Remove all listeners.
+ * @api public
+ */
+
+Events.prototype.destroy = function() {
+
 };
