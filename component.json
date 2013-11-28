@@ -9,8 +9,7 @@
     "component/delegate": "*"
   },
   "development": {
-    "bredele/interpolation" : "*",
-    "component/assert" : "*"
+    "bredele/binding" : "*"
   },
   "license": "MIT",
   "main": "index.js",
