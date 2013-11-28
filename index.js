@@ -36,6 +36,7 @@ module.exports = Events;
 
 function Events(view, isTouch){
   this.view = view;
+  this.listeners = [];
   this.isTouch = isTouch || (window.ontouchstart !== undefined);
 }
 
@@ -57,6 +58,7 @@ Events.prototype.on = function(node, type, callback, capture) {
         _this.view[callback].call(_this.view, e, node);
       };
   ev.bind(node, this.map(type), cb, cap);
+  this.listeners.push([node, this.map(type), cb, cap]);
 };
 
 
@@ -95,5 +97,8 @@ Events.prototype.map = function(type) {
  */
 
 Events.prototype.destroy = function() {
-
+  for(var l = this.listeners.length; l--;) {
+    var listener = this.listeners[l];
+    ev.unbind(listener[0], listener[1], listener[2], listener[3]);
+  }
 };
