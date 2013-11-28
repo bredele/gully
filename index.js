@@ -24,7 +24,7 @@ var mapper = {
  * Expose 'Event plugin'
  */
 
-module.exports = Event;
+module.exports = Events;
 
 
 /**

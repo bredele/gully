@@ -9,7 +9,8 @@
     "component/delegate": "*"
   },
   "development": {
-    "bredele/binding" : "*"
+    "bredele/binding" : "*",
+    "bredele/store" : "*"
   },
   "license": "MIT",
   "main": "index.js",
