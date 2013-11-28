@@ -73,10 +73,12 @@ Events.prototype.on = function(node, type, callback, capture) {
  */
 
 Events.prototype.delegate = function(node, selector, type, callback, capture) {
-  var _this = this;
-  delegate.bind(node, selector, this.map(type), function(e){
-    _this.view[callback].call(_this.view, e, node);
-  }, capture);
+  var _this = this,
+      cap = (capture === 'true'),
+      cb = delegate.bind(node, selector, this.map(type), function(e){
+      _this.view[callback].call(_this.view, e, node);
+      }, cap);
+  this.listeners.push([node, this.map(type), cb, cap]);
 };
 
 
