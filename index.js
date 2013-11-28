@@ -103,4 +103,5 @@ Events.prototype.destroy = function() {
     var listener = this.listeners[l];
     ev.unbind(listener[0], listener[1], listener[2], listener[3]);
   }
+  this.listeners = [];
 };
