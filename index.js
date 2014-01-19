@@ -2,8 +2,7 @@
  * Dependencies
  */
 
-var ev = require('event'),
-    delegate = require('delegate');
+var ev = require('event');
 
 /**
  * Map touch events.
@@ -45,40 +44,20 @@ function Events(view, isTouch){
  * Listen events.
  * @param {HTMLElement} node 
  * @param {String} type event's type
- * @param {String} callback view's callback name
+ * @param {String} fn view's callback name
  * @param {String} capture useCapture
  * @api private
  */
 
-Events.prototype.on = function(node, type, callback, capture) {
+Events.prototype.on = function(node, type, fn, capture) {
   var _this = this,
-      cap = (capture === 'true'),
-      cb = function(e) {
-        _this.view[callback].call(_this.view, e, node);
-      };
-  ev.bind(node, this.map(type), cb, cap);
-  this.listeners.push([node, this.map(type), cb, cap]);
+     cb = function(target, e) {
+      _this.view[fn].call(_this.view, e, node); //we should pass target
+     };
+  //todo: event should return the node as well...it's too complicated
+  this.listeners.push([node].concat(ev.attach(node, type, cb, (capture === 'true'))));
 };
 
-
-/**
- * Event delegation.
- * @param {HTMLElement} node 
- * @param {String} selector
- * @param {String} type event's type
- * @param {String} callback view's callback name
- * @param {String} capture useCapture
- * @api private
- */
-
-Events.prototype.delegate = function(node, selector, type, callback, capture) {
-  var _this = this,
-      cap = (capture === 'true'),
-      cb = delegate.bind(node, selector, this.map(type), function(e){
-      _this.view[callback].call(_this.view, e, node);
-      }, cap);
-  this.listeners.push([node, this.map(type), cb, cap]);
-};
 
 
 /**
@@ -100,7 +79,7 @@ Events.prototype.map = function(type) {
 Events.prototype.destroy = function() {
   for(var l = this.listeners.length; l--;) {
     var listener = this.listeners[l];
-    ev.unbind(listener[0], listener[1], listener[2], listener[3]);
+    ev.detach(listener[0], listener[1], listener[2], listener[3]);
   }
   this.listeners = [];
 };
