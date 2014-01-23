@@ -52,7 +52,7 @@ function Events(view, isTouch){
 Events.prototype.on = function(node, type, fn, capture) {
   var _this = this,
      cb = function(target, e) {
-      _this.view[fn].call(_this.view, e, node); //we should pass target
+      _this.view[fn].call(_this.view, target, e, node); //we should pass target
      };
   //todo: event should return the node as well...it's too complicated
   this.listeners.push([node].concat(ev.attach(node, type, cb, (capture === 'true'))));
