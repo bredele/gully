@@ -55,7 +55,7 @@ Events.prototype.on = function(node, type, fn, capture) {
       _this.view[fn].call(_this.view, target, e, node); //we should pass target
      };
   //todo: event should return the node as well...it's too complicated
-  this.listeners.push([node].concat(ev.attach(node, type, cb, (capture === 'true'))));
+  this.listeners.push([node].concat(ev(node, type, cb, (capture === 'true'))));
 };
 
 
@@ -79,7 +79,7 @@ Events.prototype.map = function(type) {
 Events.prototype.destroy = function() {
   for(var l = this.listeners.length; l--;) {
     var listener = this.listeners[l];
-    ev.detach(listener[0], listener[1], listener[2], listener[3]);
+    ev.off(listener[0], listener[1], listener[2], listener[3]);
   }
   this.listeners = [];
 };
