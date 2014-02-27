@@ -1,0 +1,28 @@
+{
+  "name": "events-brick",
+  "version": "0.1.0",
+  "description": "Lego cross browser events plugin with event delegation, touch mapping and filtering.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bredele/events-brick.git"
+  },
+  "keywords": [
+    "event",
+    "delegation",
+    "fiter",
+    "capture",
+    "bubbling",
+    "touch"
+  ],
+  "author": "Olivier Wietrich <olivier.wietrich@gmail.com> (http://github.com/bredele)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bredele/events-brick/issues"
+  }
+}
