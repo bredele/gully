@@ -1,15 +1,14 @@
 {
-  "name": "event-plugin",
-  "repo": "bredele/event-plugin",
-  "description": "Event plugin",
+  "name": "events-brick",
+  "repo": "bredele/events-brick",
+  "description": "Cross browser events plugin for lego.",
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
     "bredele/event": "*"
   },
   "development": {
-    "bredele/binding" : "*",
-    "bredele/store" : "*"
+    "bredele/lego": "*"
   },
   "license": "MIT",
   "main": "index.js",

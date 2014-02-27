@@ -33,6 +33,7 @@ module.exports = Events;
  */
 
 function Events(view, isTouch){
+  if(!(this instanceof Events)) return new Events(view, isTouch);
   this.view = view;
   this.listeners = [];
   this.isTouch = isTouch || (window.ontouchstart !== undefined);

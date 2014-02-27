@@ -1,11 +1,16 @@
-# event-plugin
+# Events brick
 
-  Event [plugin](https://github.com/bredele/data-binding).
+  Cross browser events plugin for [lego](http://github.com/bredele/lego). 
 
 ## Installation
 
-    $ component install bredele/event-plugin
+with [component](http://github.com/component/component):
 
+    $ component install bredele/events-brick
+
+with [nodejs](http://nodejs.org):
+
+    $ npm install events-brick
 
 ## Advantages
 
@@ -21,69 +26,74 @@
 		mousedown/up/move) with touch events (such as touchstart/end/move) 
 		if you are on a mobile device.
 
-  - Event delegation
-
+  - Event delegation and filtering
 
 
 ## Usage
 
-### Initialization
+First, add the plugin to your view (see [lego](http://github.com/bredele/lego) to know more about views):
 
-Initialize the plugin with an object handler (provides handler functions)
-and an optional boolean to use touch events (true by default).
 
 ```js
-var EventPlugin = require('event-plugin');
-var plugin = new EventPlugin({}, /** false **/);
-```
+var events = require('events-brick');
 
-
-This plugin can be used with the [view](https://github.com/bredele/view) component.
-
-```js
-var View = require('view');
-var Event = require('event-plugin');
-
-var view = new View();
-view.plugin('event', new Event({
-  test : function(){}
+view.add('data-event', events({
+  handler : function() {
+    //do something on click
+  }
 }));
-view.alive(document.body);
 
 ```
 
+## Basic
 
-### Simple event handler
+See [examples](https://github.com/bredele/events-brick/tree/master/test) to see live.
 
 ```html
-<div data-event="on:click,test"></div>
+<button data-event="on:click, handler">click</button>
 ```
 
-On click, the plugin will execute the `test` function of
-the event handler.
-
-You can pass an additional argument to use capture events.
+  Execute `handler` on click (or *touchend* if mobile).
 
 ```html
-<div data-event="on:click,test,true"></div>
+<button data-event="on:click, handler, true">click</button>
 ```
 
+  Use capture.
 
-### Event delegation
+Every handler get the event target (cross browser), the event and the anchor node as arguments.
+
+### Delegation
 
 ```html
-<ul data-event="delegate:.clickable,click,test">
-  <li class="clickable"></li>
-  <li></li>
-  ...
+<ul data-event="on:click .clickable,handler">
+  <li class="clickable">clickable</li>
+  <li>nothing</li>
 </ul>
 ```
 
-The plugin will execute the `test` function of
-the event handler only when `click` on an child DOM with the class `clickable`.
+  Execute `handler` only when clicked on an child DOM with the class `clickable`.
+
+### Filtering
+
+```html
+<input data-event="on:keypress > 13, handler">
+```
+
+  Execute `handler` only when enter is pressed.
 
 
-   
+## Standalone
+
+This component is trivial enough to be reused outside of [Lego](http://github.com/bredele/lego).
+
+```js
+var events = require('events-brick');
+
+//execute obj.handler on click
+events(obj).on(document.body, 'click', 'handler');
+
+```
 
 ## License
 

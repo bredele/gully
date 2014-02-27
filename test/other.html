@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Event plugin</title>
+</head>
+<body>
+	<div class="section">
+		<button event="on:click,test">click</button>
+		<ul event="on:click .clickable, other">
+			<li class="clickable">clickable</li>
+			<li>prevent</li>
+			<li class="clickable">clickable</li>
+			<li>prevent</li>
+			<li class="clickable">clickable</li>
+			<li>prevent</li>				
+		</ul>
+		<button event="on:click, remove">remove listener</button>
+	</div>
+	<script src="../build/build.js"></script>
+	<script>
+	  var lego = require('lego'),
+	  		events = require('events-brick'),
+	  		section = document.querySelector('.section');
+
+	  //test plugin destroy
+	  var plugin = events({
+	  	test: function(){
+	  		alert('button clicked');
+	  	},
+	  	other: function(){
+	  		alert('clickable');
+	  	},
+	  	remove : function() {
+	  		plugin.destroy();
+	  	}
+	  });
+
+	  lego(section)
+		  .add('event',plugin)
+		  .build();
+
+	</script>
+</body>
+</html>

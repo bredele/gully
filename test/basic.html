@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Basic</title>
+</head>
+<body>
+	<button data-event="on:click, handler">click</button>
+	<script src="../build/build.js"></script>
+	<script>
+	  var lego = require('lego'),
+	  		events = require('events-brick');
+
+	  lego(document.querySelector('button'))
+		  .add('data-event', events({
+		  	handler: function() {
+		  		alert('basic');
+		  	}
+		  }))
+		  .build();
+	</script>
+</body>
+</html>
