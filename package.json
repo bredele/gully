@@ -27,7 +27,7 @@
     "url": "https://github.com/bredele/events-brick/issues"
   },
   "browser": {
-    "event": "event-bredele",
+    "event": "event-bredele"
   },
   "dependencies": {
     "event-bredele": "0.0.1"
