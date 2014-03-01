@@ -56,7 +56,8 @@ Events.prototype.on = function(node, type, fn, capture) {
       _this.view[fn].call(_this.view, target, e, node); //we should pass target
      };
   //todo: event should return the node as well...it's too complicated
-  this.listeners.push([node].concat(ev(node, type, cb, (capture === 'true'))));
+  this.listeners
+    .push([node].concat(ev(node, type, (typeof fn === 'function') ? fn : cb, (capture === 'true'))));
 };
 
 

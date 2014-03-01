@@ -1,6 +1,6 @@
 {
   "name": "events-brick",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Lego cross browser events plugin with event delegation, touch mapping and filtering.",
   "main": "index.js",
   "directories": {
@@ -25,5 +25,11 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/bredele/events-brick/issues"
+  },
+  "browser": {
+    "event": "event-bredele",
+  },
+  "dependencies": {
+    "event-bredele": "0.0.1"
   }
 }

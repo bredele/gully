@@ -6,18 +6,25 @@
 </head>
 <body>
 	<button data-event="on:click, handler">click</button>
+	<button class="anchor">other click</button>
 	<script src="../build/build.js"></script>
 	<script>
 	  var lego = require('lego'),
-	  		events = require('events-brick');
-
-	  lego(document.querySelector('button'))
-		  .add('data-event', events({
+	  		events = require('events-brick')({
 		  	handler: function() {
 		  		alert('basic');
 		  	}
-		  }))
+		  });
+
+	  lego(document.querySelector('button'))
+		  .add('data-event', events)
 		  .build();
+
+		 //outside of events scope
+		 events.on(document.querySelector('.anchor'), 'click', function() {
+		   console.log('standalone listener');
+		   events.destroy();
+		 });
 	</script>
 </body>
 </html>
