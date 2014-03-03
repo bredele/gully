@@ -1,7 +1,7 @@
 {
   "name": "events-brick",
   "version": "0.1.1",
-  "description": "Lego cross browser events plugin with event delegation, touch mapping and filtering.",
+  "description": "Brick cross browser events plugin with event delegation, touch mapping and filtering.",
   "main": "index.js",
   "directories": {
     "test": "test"

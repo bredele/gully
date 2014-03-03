@@ -9,14 +9,14 @@
 	<button class="anchor">other click</button>
 	<script src="../build/build.js"></script>
 	<script>
-	  var lego = require('lego'),
+	  var brick = require('brick'),
 	  		events = require('events-brick')({
 		  	handler: function() {
 		  		alert('basic');
 		  	}
 		  });
 
-	  lego(document.querySelector('button'))
+	  brick(document.querySelector('button'))
 		  .add('data-event', events)
 		  .build();
 

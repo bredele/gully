@@ -19,7 +19,7 @@
 	</div>
 	<script src="../build/build.js"></script>
 	<script>
-	  var lego = require('lego'),
+	  var brick = require('brick'),
 	  		events = require('events-brick'),
 	  		section = document.querySelector('.section');
 
@@ -36,7 +36,7 @@
 	  	}
 	  });
 
-	  lego(section)
+	  brick(section)
 		  .add('event',plugin)
 		  .build();
 

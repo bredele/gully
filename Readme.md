@@ -1,6 +1,6 @@
 # Events brick
 
-  Cross browser events plugin for [lego](http://github.com/bredele/lego). 
+  Cross browser events plugin for [brick](http://github.com/bredele/brick). 
 
 ## Installation
 
@@ -31,7 +31,7 @@ with [nodejs](http://nodejs.org):
 
 ## Usage
 
-First, add the plugin to your view (see [lego](http://github.com/bredele/lego) to know more about views):
+First, add the plugin to your view (see [brick](http://github.com/bredele/brick) to know more about views):
 
 
 ```js
@@ -85,7 +85,7 @@ Every handler get the event target (cross browser), the event and the anchor nod
 
 ## Standalone
 
-This component is trivial enough to be reused outside of [Lego](http://github.com/bredele/lego).
+This component is trivial enough to be reused outside of [Brick](http://github.com/bredele/brick).
 
 ```js
 var events = require('events-brick');
