@@ -1,6 +1,6 @@
 {
-  "name": "events-brick",
-  "repo": "bredele/events-brick",
+  "name": "gully",
+  "repo": "bredele/gully",
   "description": "Cross browser events plugin for Brick.",
   "version": "0.0.1",
   "keywords": [],

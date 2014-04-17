@@ -1,5 +1,5 @@
 {
-  "name": "events-brick",
+  "name": "gully",
   "version": "0.1.1",
   "description": "Brick cross browser events plugin with event delegation, touch mapping and filtering.",
   "main": "index.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bredele/events-brick.git"
+    "url": "git://github.com/bredele/gully.git"
   },
   "keywords": [
     "event",
@@ -19,12 +19,13 @@
     "fiter",
     "capture",
     "bubbling",
-    "touch"
+    "touch",
+    "sewer"
   ],
   "author": "Olivier Wietrich <olivier.wietrich@gmail.com> (http://github.com/bredele)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bredele/events-brick/issues"
+    "url": "https://github.com/bredele/gully/issues"
   },
   "browser": {
     "event": "event-bredele"
