@@ -1,18 +1,22 @@
-# Events brick
+# Gully
 
-  Cross browser events plugin for [brick](http://github.com/bredele/brick). 
+  DOM event handler directive based on **[sewer](http://github.com/bredele/sewer)**.
+
+  Gully has been built for **[brick](http://github.com/bredele/brick)** and **[wall](http://github.com/bredele/wall)**. However, Gully is agnostic and trivial enough to be reused seperately or with other directive-like libraries.
+
 
 ## Installation
 
 with [component](http://github.com/component/component):
 
-    $ component install bredele/events-brick
+    $ component install bredele/gully
 
-with [nodejs](http://nodejs.org):
+with [browserify](http://browserify.org/):
 
-    $ npm install events-brick
+    $ npm install gully
 
-## Advantages
+
+<!-- ## Advantages
 
   - clean separation of concerns
 
@@ -20,80 +24,82 @@ with [nodejs](http://nodejs.org):
 		you don't need to edit both your HTML and JavaScript when you want 
 		to change something.
 
-  - Event mapping for reactive user experience
+  - Event mapping for reactive user experience...single code
 
   	By default, this plugin map desktop browser events (such as click, 
 		mousedown/up/move) with touch events (such as touchstart/end/move) 
 		if you are on a mobile device.
 
-  - Event delegation and filtering
-
-
-## Usage
-
-First, add the plugin to your view (see [brick](http://github.com/bredele/brick) to know more about views):
-
-
-```js
-var events = require('events-brick');
-
-view.add('data-event', events({
-  handler : function() {
-    //do something on click
-  }
-}));
-
-```
-
-## Basic
-
-See [examples](https://github.com/bredele/events-brick/tree/master/test) to see live.
-
-```html
-<button data-event="on:click, handler">click</button>
-```
-
-  Execute `handler` on click (or *touchend* if mobile).
-
-```html
-<button data-event="on:click, handler, true">click</button>
-```
-
-  Use capture.
-
-Every handler get the event target (cross browser), the event and the anchor node as arguments.
-
-### Delegation
-
-```html
-<ul data-event="on:click .clickable,handler">
-  <li class="clickable">clickable</li>
-  <li>nothing</li>
-</ul>
-```
-
-  Execute `handler` only when clicked on an child DOM with the class `clickable`.
-
-### Filtering
-
-```html
-<input data-event="on:keypress > 13, handler">
-```
-
-  Execute `handler` only when enter is pressed.
+  - Event delegation and filtering -->
 
 
 ## Standalone
 
-This component is trivial enough to be reused outside of [Brick](http://github.com/bredele/brick).
-
 ```js
-var events = require('events-brick');
+var events = require('gully');
+var obj = {
+  handler : function() {
+    // do something on click
+  }
+};
 
-//execute obj.handler on click
 events(obj).on(document.body, 'click', 'handler');
-
 ```
+
+  Gully supports event delegation, filtering, chaining and touch mapping. See [sewer](http://github.com/bredele/sewer) for more details.
+
+
+## Brick
+
+  Gully can be used as a plugin for [brick](http://github.com/bredele/brick) and allows you to declaratively attach event listeners to your dom:
+
+JavaScript:
+```js
+var events = require('gully');
+brick(el)
+  .use(events.brick(obj));
+```
+
+HTML:
+```
+<div on-click="handler"></div>
+```
+
+  > **Note:** Gully automatically map desktop events (such as click, mousedown/up/move) with touch events (such as touchstart/end/move) if you are on a mobile device.
+
+<!-- give example delegation, etc -->
+
+
+<!--   However, if you need more flexibility, you can 
+
+JavaScript:
+```js
+var events = require('gully');
+brick(el)
+  .add('event', events.brick());
+```
+
+HTML:
+```
+<div event-click="handler"></div>
+``` -->
+
+
+## Wall
+
+  Gully can be composed with [wall](http://github.com/bredele/wall) to attach event listeners programatically.
+
+JavaScript:
+```js
+var events = require('gully');
+var app = wall();
+
+app.use(events);
+app.attach(el, 'click', function() {
+  // do something on click
+});
+```
+
 
 ## License
 

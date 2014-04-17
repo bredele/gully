@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "bredele/event": "*"
+    "bredele/sewer": "*"
   },
   "development": {
     "bredele/brick": "*"
