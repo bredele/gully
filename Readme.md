@@ -42,7 +42,7 @@ var obj = {
     // do something on click
   }
 };
-
+ 
 events(obj).attach(document.body, 'click', 'handler');
 ```
 

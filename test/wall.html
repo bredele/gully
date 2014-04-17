@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Standalone</title>
+	<title>Wall</title>
 </head>
 <body>
 	<button class="btn">click</button>
+	<button class="btn2">custom</button>
 	<script src="../build/build.js"></script>
 	<script>
 	  var events = require('gully');
-	  var app = require('wall')();
+	  var wall = require('wall');
+	  
+	  // create listener type
+    wall
+      .inject('listener', {
+	    	custom: function() {
+	    		alert('custom');
+	    	}
+	    })
+	    .use(events);
+
+	  // example 1
+	  var app = wall();
 	  var btn = document.querySelector('.btn');
  
 
@@ -18,6 +31,12 @@
 	  app.attach(btn, 'click', function() {
 	  	alert('click');
 	  });
+
+	  // example 2
+	  var listener = wall('listener');
+	  var btn2 = document.querySelector('.btn2');
+	  listener.attach(btn2, 'click', 'custom');
+
 	</script>
 </body>
 </html>

@@ -29,15 +29,38 @@ module.exports = Gully;
 
 /**
  * Gully constructor.
+ *
+ * Examples:
+ *
+ *   // merge
+ *   gully(obj);
+ *   obj.attach(document.body, click, 'onClick', true);
+ *
+ *   // don't merge
+ *   var handler = gully(obj, false);
+ *   handler.attach(document.body, click, 'onClick', true);
+ * 
  * 
  * @param {Object} obj
+ * @param {Boolean} bool merge object
  * @api public
  */
 
-function Gully(obj){
-  if(!(this instanceof Gully)) return new Gully(obj);
+function Gully(obj, bool){
+  if(!(this instanceof Gully)) {
+    if(bool === false) return new Gully(obj);
+    //hide view and _listeners
+    var handler = new Gully(obj, false);
+    obj.attach = function() {
+      handler.attach.apply(handler, arguments);
+    };
+    obj.detach = function() {
+      handler.detach.apply(handler, arguments);
+    };
+    return;
+  }
   this.view = obj;
-  this.listeners = [];
+  this._listeners = [];
 }
 
 
@@ -95,7 +118,7 @@ Gully.prototype.attach = function(node, type, fn, capture) {
       _this.view[fn].call(_this.view, target, e, node); //we should pass target
      };
   //todo: event should return the node as well...it's too complicated
-  this.listeners
+  this._listeners
     .push([node].concat(sewer.attach(node, type, (typeof fn === 'function') ? fn : cb, (capture === 'true'))));
 };
 
@@ -107,10 +130,10 @@ Gully.prototype.attach = function(node, type, fn, capture) {
  */
 
 Gully.prototype.destroy = function() {
-  for(var l = this.listeners.length; l--;) {
-    var listener = this.listeners[l];
+  for(var l = this._listeners.length; l--;) {
+    var listener = this._listeners[l];
     sewer.detach(listener[0], listener[1], listener[2], listener[3]);
   }
-  this.listeners = [];
+  this._listeners = [];
 };
 
