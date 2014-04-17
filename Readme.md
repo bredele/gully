@@ -1,6 +1,6 @@
 # Gully
 
-  DOM event handler directive based on **[sewer](http://github.com/bredele/sewer)**.
+  DOM event handler based on **[sewer](http://github.com/bredele/sewer)**, perfect to use as directive with you favorite MV* library. 
 
   Gully has been built for **[brick](http://github.com/bredele/brick)** and **[wall](http://github.com/bredele/wall)**. However, Gully is agnostic and trivial enough to be reused seperately or with other directive-like libraries.
 
@@ -35,18 +35,37 @@ with [browserify](http://browserify.org/):
 
 ## Standalone
 
+  Gully can be used as a standalone library (see [API](#api)). 
+
+You can merge an object with gully (aka gullying):
 ```js
 var events = require('gully');
 var obj = {
   handler : function() {
     // do something on click
+  },
+  other : function() {
+    // do something else
   }
 };
- 
-events(obj).attach(document.body, 'click', 'handler');
+
+events(obj);
+obj.attach(document.body, 'click', 'handler');
 ```
 
-  Gully supports event delegation, filtering, chaining and touch mapping. See [sewer](http://github.com/bredele/sewer) for more details.
+or return a new object:
+```js
+var handler = events(obj, false);
+
+// execute other in obj
+handler.attach(document.body, 'mousedown', 'other');
+
+handler.attach(el, 'keypress', function() {
+  // do something outside of obj
+});
+```
+
+  Gully also supports event delegation, filtering, chaining and touch mapping. See [sewer](http://github.com/bredele/sewer) for more details.
 
 
 ## Brick
