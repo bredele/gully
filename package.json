@@ -1,6 +1,6 @@
 {
   "name": "gully",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Brick cross browser events plugin with event delegation, touch mapping and filtering.",
   "main": "index.js",
   "directories": {
