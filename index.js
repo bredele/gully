@@ -28,6 +28,26 @@ module.exports = Gully;
 
 
 /**
+ * Compose object with gully methods and hide
+ * its internal properties.
+ * 
+ * @param  {Object} obj 
+ * @api private
+ */
+
+function compose(obj) {
+  var handler = new Gully(obj, false);
+  //NOTE: to refactor
+  obj.attach = function() {
+    handler.attach.apply(handler, arguments);
+  };
+  obj.detach = function() {
+    handler.detach.apply(handler, arguments);
+  };
+}
+
+
+/**
  * Gully constructor.
  *
  * Examples:
@@ -49,15 +69,7 @@ module.exports = Gully;
 function Gully(obj, bool){
   if(!(this instanceof Gully)) {
     if(bool === false) return new Gully(obj);
-    //hide view and _listeners
-    var handler = new Gully(obj, false);
-    obj.attach = function() {
-      handler.attach.apply(handler, arguments);
-    };
-    obj.detach = function() {
-      handler.detach.apply(handler, arguments);
-    };
-    return;
+    return compose(obj);
   }
   this.view = obj;
   this._listeners = [];
