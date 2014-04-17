@@ -8,7 +8,8 @@
     "bredele/sewer": "*"
   },
   "development": {
-    "bredele/brick": "*"
+    "bredele/brick": "*",
+    "bredele/wall" : "*"
   },
   "license": "MIT",
   "main": "index.js",

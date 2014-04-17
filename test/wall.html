@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Standalone</title>
+</head>
+<body>
+	<button class="btn">click</button>
+	<script src="../build/build.js"></script>
+	<script>
+	  var events = require('gully');
+	  var app = require('wall')();
+	  var btn = document.querySelector('.btn');
+ 
+
+	  app.use(events);
+
+	  app.attach(btn, 'click', function() {
+	  	alert('click');
+	  });
+	</script>
+</body>
+</html>
