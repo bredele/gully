@@ -2,11 +2,25 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Basic</title>
+	<title>Brick plugin</title>
+	<style>
+	  div {
+	  	width:100px;
+	  	cursor: pointer;
+	  	padding:46px 0;
+	  	text-align: center;
+	  	color:white;
+	  	background:#2ecc71;
+	  }
+
+	  div:hover {
+	  	background:#27ae60;
+	  }
+	</style>
 </head>
 <body>
 	<button on-click="handler">click</button>
-	<button class="anchor">other click</button>
+	<div on-mouseover="hover">see inspector</div>
 	<script src="../build/build.js"></script>
 	<script>
 	  var brick = require('brick');
@@ -14,18 +28,16 @@
 	  var obj = {
 	  	handler: function() {
 	  		alert('basic');
+	  	},
+	  	hover: function() {
+	  		console.log('hover');
 	  	}
 	  };
 
-	  brick(document.querySelector('button'))
+	  brick(document.body)
 	    .use(events.brick(obj))
 		  .build();
 
-		 //outside of events scope
-		 events.attach(document.querySelector('.anchor'), 'click', function() {
-		   console.log('standalone listener');
-		   //events.destroy();
-		 });
 	</script>
 </body>
 </html>
