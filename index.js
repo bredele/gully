@@ -3,7 +3,20 @@
  */
 
 var sewer = require('sewer');
-
+var events = [
+  'change',
+  'blur',
+  'focus',
+  'input',
+  'submit',
+  'keypress',
+  'keyup',
+  'keydown',
+  'mouseup',
+  'mousedown',
+  'dblclick',
+  'click'
+];
 
 
 /**
@@ -14,18 +27,53 @@ module.exports = Gully;
 
 
 /**
- * Event plugin constructor.
+ * Gully constructor.
  * 
- * @param {Object} view event plugin scope
+ * @param {Object} obj
  * @api public
  */
 
-function Gully(view){
-  if(!(this instanceof Gully)) return new Gully(view);
-  this.view = view;
+function Gully(obj){
+  if(!(this instanceof Gully)) return new Gully(obj);
+  this.view = obj;
   this.listeners = [];
 }
 
+
+// Expose sewer
+
+Gully.attach = sewer.attach;
+Gully.detach = sewer.detach;
+
+
+/**
+ * [brick description]
+ * 
+ * @return {[type]} [description]
+ * @api public
+ */
+
+Gully.brick = function(obj) {
+  var handler = Gully(obj);
+  var cb = function(ctx, name) {
+    ctx.add('on-' + name, function(node, fn) {
+      handler.attach(node, name, fn);
+    })
+  };
+  return function(ctx) {
+    // add listeners for every type of events
+    for(var l = events.length; l--;) {
+      cb(ctx, events[l]);
+    }
+
+    //NOTE: we should off on destory
+
+    //add global listener
+    // ctx.add('on', function(node, expr) {
+
+    // });
+  };
+};
 
 
 /**
@@ -38,7 +86,7 @@ function Gully(view){
  * @api public
  */
 
-Gully.prototype.on = function(node, type, fn, capture) {
+Gully.prototype.attach = function(node, type, fn, capture) {
   var _this = this,
      cb = function(target, e) {
       _this.view[fn].call(_this.view, target, e, node); //we should pass target

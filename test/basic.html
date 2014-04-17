@@ -5,25 +5,26 @@
 	<title>Basic</title>
 </head>
 <body>
-	<button data-event="on:click, handler">click</button>
+	<button on-click="handler">click</button>
 	<button class="anchor">other click</button>
 	<script src="../build/build.js"></script>
 	<script>
-	  var brick = require('brick'),
-	  		events = require('gully')({
-		  	handler: function() {
-		  		alert('basic');
-		  	}
-		  });
+	  var brick = require('brick');
+	  var events = require('gully');
+	  var obj = {
+	  	handler: function() {
+	  		alert('basic');
+	  	}
+	  };
 
 	  brick(document.querySelector('button'))
-		  .add('data-event', events)
+	    .use(events.brick(obj))
 		  .build();
 
 		 //outside of events scope
-		 events.on(document.querySelector('.anchor'), 'click', function() {
+		 events.attach(document.querySelector('.anchor'), 'click', function() {
 		   console.log('standalone listener');
-		   events.destroy();
+		   //events.destroy();
 		 });
 	</script>
 </body>

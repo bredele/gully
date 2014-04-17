@@ -43,7 +43,7 @@ var obj = {
   }
 };
 
-events(obj).on(document.body, 'click', 'handler');
+events(obj).attach(document.body, 'click', 'handler');
 ```
 
   Gully supports event delegation, filtering, chaining and touch mapping. See [sewer](http://github.com/bredele/sewer) for more details.
@@ -61,7 +61,7 @@ brick(el)
 ```
 
 HTML:
-```
+```html
 <div on-click="handler"></div>
 ```
 
