@@ -21,9 +21,13 @@
 <body>
 	<button on-click="handler">click</button>
 	<div on-mouseover="hover">see inspector</div>
+	<nav on-click=".clickable, handler">
+		<button class="clickable">clickable</button>
+		<button></button>
+	</nav>
 	<script src="../build/build.js"></script>
 	<script>
-	  var brick = require('brick');
+	  var brick = require('brickjs');
 	  var events = require('gully');
 	  var obj = {
 	  	handler: function() {

@@ -1,6 +1,6 @@
 {
   "name": "gully",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Brick cross browser events plugin with event delegation, touch mapping and filtering.",
   "main": "index.js",
   "directories": {
@@ -27,10 +27,7 @@
   "bugs": {
     "url": "https://github.com/bredele/gully/issues"
   },
-  "browser": {
-    "event": "event-bredele"
-  },
   "dependencies": {
-    "event-bredele": "0.0.1"
+    "sewer": "^0.1.1"
   }
 }
