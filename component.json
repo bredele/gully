@@ -2,7 +2,7 @@
   "name": "gully",
   "repo": "bredele/gully",
   "description": "Cross browser events plugin for Brick.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "keywords": [],
   "dependencies": {
     "bredele/sewer": "*"
