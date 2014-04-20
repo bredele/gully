@@ -93,16 +93,22 @@ Gully.detach = sewer.detach;
 
 Gully.brick = function(obj) {
   var handler = new Gully(obj);
+  var listen = function(node, name, fn, str) {
+    var results = str.split(/\s*,\s*/);
+    if(results.length > 1) {
+      name = name + ' ' + results[0];
+      fn = results[1];
+    }
+    handler.attach(node, name, fn);
+  };
   var cb = function(ctx, name) {
     ctx.add('on-' + name, function(node, fn) {
       //NOTE: should probably use mould
-      var results = fn.split(/\s*,\s*/);
-      if(results.length > 1) {
-        name = name + ' ' + results[0];
-        fn = results[1];
+      // there is a memory leak somewhere
+      var phrase = fn.split(/\s*;\s*/);
+      for(var l = phrase.length; l--;) {
+        listen(node, name, fn, phrase[l]);
       }
-      console.log(name, fn);
-      handler.attach(node, name, fn);
     });
   };
   return function(ctx) {

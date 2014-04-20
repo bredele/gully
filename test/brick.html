@@ -21,10 +21,11 @@
 <body>
 	<button on-click="handler">click</button>
 	<div on-mouseover="hover">see inspector</div>
-	<nav on-click=".clickable, handler">
+	<nav on-click=".clickable, handler; .other, other">
 		<button class="clickable">clickable</button>
-		<button></button>
+		<button class="other">other</button>
 	</nav>
+
 	<script src="../build/build.js"></script>
 	<script>
 	  var brick = require('brickjs');
@@ -35,6 +36,9 @@
 	  	},
 	  	hover: function() {
 	  		console.log('hover');
+	  	},
+	  	other: function() {
+	  		alert('other');
 	  	}
 	  };
 
